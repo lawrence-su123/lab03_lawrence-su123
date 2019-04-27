@@ -1,6 +1,6 @@
-// countDucks.cpp 
+// myProg02.cpp 
 // Lawrence Su 4/26/19
-// counts number of ducks in a text file
+// this program counts the number of animals and ducks in a text file
 #include <iostream> // for printf()
 #include <cstdlib> // for exit(), perror()
 #include <fstream> // for ifstream
@@ -17,7 +17,9 @@ int main(int argc, char *argv[])
 		exit(1); // defined in cstdlib
 	}
 	ifs.open(argv[1]);
-	int ducks=0;
+	int animals = 0;
+	int ducks = 0;
+	int non_ducks = 0;
 	if (ifs.fail())
 	{
 		cerr << "unable to open the file"<<endl;
@@ -26,13 +28,22 @@ int main(int argc, char *argv[])
 
 	while (getline(ifs,my_line))
 	{
-		if (my_line == "duck")
+		if (my_line != " ")
+
 		{
-			ducks+=1;
+			animals+=1;
+
+			if (my_line == "duck")
+
+				ducks+=1;
 		}
 	}
+	non_ducks = animals - ducks;
 	ifs.close();
-	cout<< "There were " << ducks << " ducks" << " in "<<argv[1]<<endl; 
+	cout<< "Report for "<<argv[1]<<":"<<endl;
+	cout<< "   Animal count:    "<< animals <<endl;
+	cout<< "   Duck count:      "<< ducks << endl;
+	cout<< "   Non duck count:  "<< non_ducks <<endl;
 
 
 
